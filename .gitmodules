@@ -1,0 +1,6 @@
+[submodule "themes/pickles"]
+	path = themes/pickles
+	url = https://github.com/mismith0227/hugo_theme_pickles
+[submodule "themes/simpleness"]
+	path = themes/simpleness
+	url = git@github.com:RainerChiang/simpleness.git
