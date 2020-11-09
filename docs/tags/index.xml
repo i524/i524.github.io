@@ -6,7 +6,16 @@
     <description>Recent content in Tags on 1日1時間</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Mon, 09 Nov 2020 09:48:13 +0900</lastBuildDate><atom:link href="https://i524.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 10 Nov 2020 05:54:36 +0900</lastBuildDate><atom:link href="https://i524.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>rust</title>
+      <link>https://i524.github.io/tags/rust/</link>
+      <pubDate>Tue, 10 Nov 2020 05:54:36 +0900</pubDate>
+      
+      <guid>https://i524.github.io/tags/rust/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>hugo</title>
       <link>https://i524.github.io/tags/hugo/</link>

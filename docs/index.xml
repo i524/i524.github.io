@@ -6,7 +6,16 @@
     <description>Recent content on 1日1時間</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Mon, 09 Nov 2020 09:48:13 +0900</lastBuildDate><atom:link href="https://i524.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 10 Nov 2020 05:54:36 +0900</lastBuildDate><atom:link href="https://i524.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rust のインストール</title>
+      <link>https://i524.github.io/blog/20201110-installing-rust/</link>
+      <pubDate>Tue, 10 Nov 2020 05:54:36 +0900</pubDate>
+      
+      <guid>https://i524.github.io/blog/20201110-installing-rust/</guid>
+      <description>資料  Installation - The Rust Programming Language  brew install rustup-init rustup-init rustup-init [20:20:26] Welcome to Rust! This will download and install the official compiler for the Rust programming language, and its package manager, Cargo. Rustup metadata and toolchains will be installed into the Rustup home directory, located at: /Users/$USER/.rustup This can be modified with the RUSTUP_HOME environment variable. The Cargo home directory located at: /Users/$USER/.cargo This can be modified with the CARGO_HOME environment variable.</description>
+    </item>
+    
     <item>
       <title>20201109 Hugo で github pages にコンテンツを公開する</title>
       <link>https://i524.github.io/blog/20201109-hugo-github-pages/</link>

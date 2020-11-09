@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.78.1" />
+
+  <title> Rust のインストール |  1日1時間</title>
+  <link rel="stylesheet" href="https://i524.github.io/css/index.css">
+  <link rel="stylesheet" href="https://i524.github.io/css/classes.css">
+  <link rel="canonical" href="https://i524.github.io/blog/20201110-installing-rust/">
+  <link rel="alternate" type="application/rss+xml" href="" title="1日1時間">
+  
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <header class="menus">
+  
+  <a href="https://i524.github.io/">1日1時間</a>
+  
+
+  <nav >
+    
+  </nav>
+
+  <nav class="fontawesome">
+    
+    
+  </nav>
+  
+  
+</header>
+
+<article id="article">
+  <header>
+  
+
+    <h1 style="text-align: center;" >Rust のインストール</h1>
+    <div class="post-meta">
+    
+      <time datetime="2020-11-10T05:54:36&#43;09:00">November 10, 2020</time> &nbsp; 
+    
+
+     &nbsp;
+
+    
+    
+    
+
+    
+    </div>
+  </header>
+
+  <h2 id="資料">資料</h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch01-01-installation.html">Installation - The Rust Programming Language</a></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brew install rustup-init
+rustup-init
+</code></pre></div><pre><code>rustup-init                                                                                                                                                                                                              [20:20:26]
+
+Welcome to Rust!
+
+This will download and install the official compiler for the Rust
+programming language, and its package manager, Cargo.
+
+Rustup metadata and toolchains will be installed into the Rustup
+home directory, located at:
+
+  /Users/$USER/.rustup
+
+This can be modified with the RUSTUP_HOME environment variable.
+
+The Cargo home directory located at:
+
+  /Users/$USER/.cargo
+
+This can be modified with the CARGO_HOME environment variable.
+
+The cargo, rustc, rustup and other commands will be added to
+Cargo's bin directory, located at:
+
+  /Users/$USER/.cargo/bin
+
+This path will then be added to your PATH environment variable by
+modifying the profile files located at:
+
+  /Users/$USER/.profile
+  /Users/$USER/.zprofile
+
+You can uninstall at any time with rustup self uninstall and
+these changes will be reverted.
+
+Current installation options:
+
+
+   default host triple: x86_64-apple-darwin
+     default toolchain: stable (default)
+               profile: default
+  modify PATH variable: yes
+
+1) Proceed with installation (default)
+2) Customize installation
+3) Cancel installation
+&gt;
+</code></pre><p>デフォルトのインストールを選択</p>
+<p>色々ログが出て最終的に</p>
+<pre><code>  stable installed - rustc 1.47.0 (18bf6b4f0 2020-10-07)
+
+
+Rust is installed now. Great!
+
+To get started you need Cargo's bin directory ($HOME/.cargo/bin) in your PATH
+environment variable. Next time you log in this will be done
+automatically.
+
+To configure your current shell run source $HOME/.cargo/env
+</code></pre><p>言われたとおり source する</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">source $HOME/.cargo/env
+</code></pre></div><p>rustc や cargo が使えるので OK</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ rustc --version                                                                                                                                                                                                                                           <span style="color:#f92672">[</span>5:35:43<span style="color:#f92672">]</span>
+rustc 1.47.0 <span style="color:#f92672">(</span>18bf6b4f0 2020-10-07<span style="color:#f92672">)</span>
+$ cargo --version                                                                                                                                                                                                                                           <span style="color:#f92672">[</span>5:35:51<span style="color:#f92672">]</span>
+cargo 1.47.0 <span style="color:#f92672">(</span>f3c7e066a 2020-08-28<span style="color:#f92672">)</span>
+</code></pre></div>
+
+  
+  <footer>
+    <hr>
+    
+    <div class="post-tags">
+    
+      <i class="fas fa-tags"></i>
+      
+        <a href="/tags/rust">rust</a>
+        &nbsp;
+      
+    
+    </div>
+  </footer>
+  
+
+  
+
+
+  <div class="comments">
+
+
+
+</div>
+
+</article>
+
+
+
+  
+  
+  
+</body>
+<div class="foot">
+  
+  
+
+  
+</div>
+
+
+
+</html>
