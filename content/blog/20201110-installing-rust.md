@@ -2,6 +2,8 @@
 title: "Rust のインストール"
 date: 2020-11-10T05:54:36+09:00
 draft: false
+tags:
+  - rust
 ---
 
 ## 資料
