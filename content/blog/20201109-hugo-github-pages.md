@@ -62,3 +62,11 @@ hugo new blog/20201109-hugo-github-pages.md
 ```bash
 hugo server -D
 ```
+
+#### デプロイ
+
+```bash
+hugo
+```
+
+これで docs ディレクトリに html 等が生成されるので push する
