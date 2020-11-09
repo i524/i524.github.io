@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.78.1" />
+
+  <title> 20201109 Hugo で github pages にコンテンツを公開する |  1日1時間</title>
+  <link rel="stylesheet" href="https://i524.github.io/css/index.css">
+  <link rel="stylesheet" href="https://i524.github.io/css/classes.css">
+  <link rel="canonical" href="https://i524.github.io/blog/20201109-hugo-github-pages/">
+  <link rel="alternate" type="application/rss+xml" href="" title="1日1時間">
+  
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <header class="menus">
+  
+  <a href="https://i524.github.io/">1日1時間</a>
+  
+
+  <nav >
+    
+  </nav>
+
+  <nav class="fontawesome">
+    
+    
+  </nav>
+  
+  
+</header>
+
+<article id="article">
+  <header>
+  
+
+    <h1 style="text-align: center;" >20201109 Hugo で github pages にコンテンツを公開する</h1>
+    <div class="post-meta">
+    
+      <time datetime="2020-11-09T09:48:13&#43;09:00">November 09, 2020</time> &nbsp; 
+    
+
+     &nbsp;
+
+    
+    
+    
+
+    
+    </div>
+  </header>
+
+  <h2 id="資料">資料</h2>
+<ul>
+<li><a href="https://qiita.com/yotsak/items/017734d5f873f4f194d4">Hugo + GitHub Pages + 無料で洒落たブログを30分で作る - Qiita</a></li>
+<li><a href="https://gohugo.io/getting-started/quick-start/">Quick Start | Hugo</a></li>
+<li><a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">Host on GitHub | Hugo</a></li>
+</ul>
+<h2 id="手順">手順</h2>
+<h3 id="hugo-のインストール">Hugo のインストール</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brew install hugo
+</code></pre></div><h3 id="サイト作成">サイト作成</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hugo new site $USER.github.io
+cd $USER.github.io
+</code></pre></div><h4 id="テーマ設定">テーマ設定</h4>
+<p>今回は <a href="https://themes.gohugo.io/simpleness/">Simpleness | Hugo Themes</a> を使う</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">echo <span style="color:#e6db74">&#39;theme = &#34;pickles&#34;&#39;</span> &gt;&gt; config.toml
+git submodule add https://github.com/mismith0227/hugo_theme_pickles themes/pickles
+</code></pre></div><h4 id="プロジェクト設定">プロジェクト設定</h4>
+<p>必要に応じて書き換える</p>
+<p>publishDir は github pages の対象ディレクトリなので <code>docs</code> 固定</p>
+<pre><code>baseURL = &quot;https://i524.github.io/&quot;
+languageCode = &quot;ja-jp&quot;
+title = &quot;1日1時間&quot;
+theme = &quot;simpleness&quot;
+publishDir = &quot;docs&quot;
+</code></pre><h4 id="コンテンツ追加">コンテンツ追加</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hugo new blog/20201109-hugo-github-pages.md
+</code></pre></div><p>動作確認は以下で</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hugo server -D
+</code></pre></div>
+
+  
+  <footer>
+    <hr>
+    
+    <div class="post-tags">
+    
+      <i class="fas fa-tags"></i>
+      
+        <a href="/tags/hugo">hugo</a>
+        &nbsp;
+      
+    
+    </div>
+  </footer>
+  
+
+  
+
+
+  <div class="comments">
+
+
+
+</div>
+
+</article>
+
+
+
+  
+  
+  
+</body>
+<div class="foot">
+  
+  
+
+  
+</div>
+
+
+
+</html>

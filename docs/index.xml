@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>1日1時間</title>
+    <link>https://i524.github.io/</link>
+    <description>Recent content on 1日1時間</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Mon, 09 Nov 2020 09:48:13 +0900</lastBuildDate><atom:link href="https://i524.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>20201109 Hugo で github pages にコンテンツを公開する</title>
+      <link>https://i524.github.io/blog/20201109-hugo-github-pages/</link>
+      <pubDate>Mon, 09 Nov 2020 09:48:13 +0900</pubDate>
+      
+      <guid>https://i524.github.io/blog/20201109-hugo-github-pages/</guid>
+      <description>資料  Hugo + GitHub Pages + 無料で洒落たブログを30分で作る - Qiita Quick Start | Hugo Host on GitHub | Hugo  手順 Hugo のインストール brew install hugo サイト作成 hugo new site $USER.github.io cd $USER.github.io テーマ設定 今回は Simpleness | Hugo Themes を使う
+echo &amp;#39;theme = &amp;#34;pickles&amp;#34;&amp;#39; &amp;gt;&amp;gt; config.toml git submodule add https://github.com/mismith0227/hugo_theme_pickles themes/pickles プロジェクト設定 必要に応じて書き換える
+publishDir は github pages の対象ディレクトリなので docs 固定
+baseURL = &amp;quot;https://i524.github.io/&amp;quot; languageCode = &amp;quot;ja-jp&amp;quot; title = &amp;quot;1日1時間&amp;quot; theme = &amp;quot;simpleness&amp;quot; publishDir = &amp;quot;docs&amp;quot; コンテンツ追加 hugo new blog/20201109-hugo-github-pages.</description>
+    </item>
+    
+  </channel>
+</rss>
