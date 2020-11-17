@@ -1,6 +1,6 @@
 ---
 title: "Rust で推測ゲーム(The Book chapter 2)"
-date: 2020-11-10T05:57:09+09:00
+date: 2020-11-18T06:57:09+09:00
 draft: false
 tags:
   - rust
@@ -16,7 +16,7 @@ tags:
 $ cargo new guessing_game
 $ cd guessing_game
 $ cargo run
-   Compiling guessing_game v0.1.0 (/Users/$USER/code/others/guessing_game)
+   Compiling guessing_game v0.1.0 (/path/to/guessing_game)
     Finished dev [unoptimized + debuginfo] target(s) in 4.29s
      Running `target/debug/guessing_game`
 Hello, world!
@@ -65,4 +65,137 @@ fn main() {
     ![return type view](/20201110-rust-guessing-game/return-type-view.png)
 
 
-### 乱数生成部分の作成
+### パッケージのインストール
+
+乱数生成部分を処理するパッケージをインストールする
+
+`cargo.toml` に以下を追加
+
+```toml
+[dependencies]
+rand = "0.5.5"
+```
+
+`cargo build` でパッケージのダウンロードとコンパイルが走る
+
+バージョン指定の `0.5.5` は semver 指定で `^0.5.5` の短縮形（`^0.5.5` でも可）
+
+```
+$ cargo build
+   Compiling rand_core v0.3.1
+   Compiling rand_pcg v0.1.2
+   Compiling rand_jitter v0.1.4
+   Compiling rand_os v0.1.3
+   Compiling rand_chacha v0.1.1
+   Compiling rand_hc v0.1.0
+   Compiling rand_xorshift v0.1.1
+   Compiling rand_isaac v0.1.1
+   Compiling rand v0.6.5
+   Compiling guessing_game v0.1.0 (/path/to/guessing_game)
+    Finished dev [unoptimized + debuginfo] target(s) in 2.17s
+```
+
+2回目以降はパッケージがダウンロード済みで、コードにも差分がなければ何も実行されずに終わる
+
+```
+$ cargo build
+    Finished dev [unoptimized + debuginfo] target(s) in 0.04s
+```
+
+### 乱数生成部分の追加
+
+```rust {hl_lines=[1,7]}
+use rand::Rng;
+use std::io;
+
+fn main() {
+    println!("Guess the number!");
+
+    let secret_number = rand::thread_rng().gen_range(1, 101);
+
+    println!("Please input your guess.");
+```
+
+- `rand::Rng` は rand のメソッド使う場合に必要（詳細は chapter 10）
+- `gen_range(a, b)` は a <= n < b な整数 n を生成する
+- 依存している crate のドキュメントは `cargo doc --open` でドキュメント生成してブラウザで見られる
+
+### 入力と答えの比較
+
+
+```rust {hl_lines=[3 19 23 24 25 26 27]}
+use rand::Rng;
+use std::io;
+use std::cmp::Ordering;
+
+fn main() {
+    println!("Guess the number!");
+
+    let secret_number = rand::thread_rng().gen_range(1, 101);
+
+    println!("The secret number is: {}", secret_number);
+
+    println!("Please input your guess.");
+
+    let mut guess = String::new();
+    io::stdin()
+        .read_line(&mut guess)
+        .expect("Failed to read line");
+
+    let guess: u32 = guess.trim().parse().expect("Please type a number!");
+
+    println!("You guessed: {}", guess);
+
+    match guess.cmp(&secret_number) {
+        Ordering::Less => println!("Too small!"),
+        Ordering::Greater => println!("Too big!"),
+        Ordering::Equal => println!("You win!"),
+    }
+}
+```
+
+- String の `parse` メソッドは数値型へのキャスト(`Result` を返す)
+- guess は変数名がかぶるが前に宣言した変数を上書きできる(Shadowing)
+- `Ordering` は `Result` 同様 Enum で `Less`, `Greater`, `Equal` からなる
+- `cmp` メソッドは比較した結果を Ordering で返す
+- `match` はパターンマッチ
+    - パターンごとの処理を書くひとつひとつの行は `arm` と呼ぶ
+
+
+### ループで複数の入力を受け取る
+
+```rust {hl_lines=[1,9]}
+loop {
+        // 略
+
+        match guess.cmp(&secret_number) {
+            Ordering::Less => println!("Too small!"),
+            Ordering::Greater => println!("Too big!"),
+            Ordering::Equal => {
+                println!("You win!");
+                break;
+            }
+        }
+    }
+```
+
+- `loop` は無限ループ
+- 正解したら `break` でループを抜ける
+
+### 不正な入力のハンドリング
+
+数値以外の入力を受け取った際は無視するように変更する
+
+```rust
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        };
+```
+
+- `_` は全ての条件が当てはまる
+- `continue` で loop の次の iteration に進む
+    - ここに `continue` 書けるの妙な感じ
+
+
+ここまでで完成
