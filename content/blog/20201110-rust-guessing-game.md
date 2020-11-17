@@ -62,7 +62,7 @@ fn main() {
 - `println!` 内の　`{}` は変数を埋め込むプレースホルダ（複数可）
 - メソッド呼び出しは1つ1つ改行するのが推奨
     - エディタでもその形に合わせてフォーマット & メソッドごとに返り値の型を表示してくれる（以下は VSCode + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=matklad.rust-analyzer) の表示）
-    ![return type view](/20201110-rust-guessing-game/return-type-view.png)
+    ![return type view](/blog/20201110-rust-guessing-game/return-type-view.png)
 
 
 ### パッケージのインストール
