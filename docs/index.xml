@@ -6,7 +6,17 @@
     <description>Recent content on 1日1時間</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Tue, 10 Nov 2020 05:54:36 +0900</lastBuildDate><atom:link href="https://i524.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 18 Nov 2020 06:57:09 +0900</lastBuildDate><atom:link href="https://i524.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rust で推測ゲーム(The Book chapter 2)</title>
+      <link>https://i524.github.io/blog/20201110-rust-guessing-game/</link>
+      <pubDate>Wed, 18 Nov 2020 06:57:09 +0900</pubDate>
+      
+      <guid>https://i524.github.io/blog/20201110-rust-guessing-game/</guid>
+      <description>資料  Programming a Guessing Game - The Rust Programming Language  プロジェクト作成 $ cargo new guessing_game $ cd guessing_game $ cargo run Compiling guessing_game v0.1.0 (/path/to/guessing_game) Finished dev [unoptimized + debuginfo] target(s) in 4.29s Running `target/debug/guessing_game` Hello, world! 入力を受け付ける部分の作成 資料通りコードを書いていく
+use std::io; fn main() { println!(&amp;#34;Guess the number!&amp;#34;); println!(&amp;#34;Please input your guess.&amp;#34;); let mut guess = String::new(); io::stdin() .read_line(&amp;amp;mut guess) .expect(&amp;#34;Failed to read line&amp;#34;); println!(&amp;#34;You guessed: {}&amp;#34;, guess); }  println!</description>
+    </item>
+    
     <item>
       <title>Rust のインストール</title>
       <link>https://i524.github.io/blog/20201110-installing-rust/</link>

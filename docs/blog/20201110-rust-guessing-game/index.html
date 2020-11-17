@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.78.1" />
+
+  <title> Rust で推測ゲーム(The Book chapter 2) |  1日1時間</title>
+  <link rel="stylesheet" href="https://i524.github.io/css/index.css">
+  <link rel="stylesheet" href="https://i524.github.io/css/classes.css">
+  <link rel="canonical" href="https://i524.github.io/blog/20201110-rust-guessing-game/">
+  <link rel="alternate" type="application/rss+xml" href="" title="1日1時間">
+  
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <header class="menus">
+  
+  <a href="https://i524.github.io/">1日1時間</a>
+  
+
+  <nav >
+    
+  </nav>
+
+  <nav class="fontawesome">
+    
+    
+  </nav>
+  
+  
+</header>
+
+<article id="article">
+  <header>
+  
+
+    <h1 style="text-align: center;" >Rust で推測ゲーム(The Book chapter 2)</h1>
+    <div class="post-meta">
+    
+      <time datetime="2020-11-18T06:57:09&#43;09:00">November 18, 2020</time> &nbsp; 
+    
+
+     &nbsp;
+
+    
+    
+    
+
+    
+    </div>
+  </header>
+
+  <h2 id="資料">資料</h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch02-00-guessing-game-tutorial.html">Programming a Guessing Game - The Rust Programming Language</a></li>
+</ul>
+<h3 id="プロジェクト作成">プロジェクト作成</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cargo new guessing_game
+$ cd guessing_game
+$ cargo run
+   Compiling guessing_game v0.1.0 <span style="color:#f92672">(</span>/path/to/guessing_game<span style="color:#f92672">)</span>
+    Finished dev <span style="color:#f92672">[</span>unoptimized + debuginfo<span style="color:#f92672">]</span> target<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span> in 4.29s
+     Running <span style="color:#e6db74">`</span>target/debug/guessing_game<span style="color:#e6db74">`</span>
+Hello, world!
+</code></pre></div><h3 id="入力を受け付ける部分の作成">入力を受け付ける部分の作成</h3>
+<p>資料通りコードを書いていく</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">use</span> std::io;
+
+<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Guess the number!&#34;</span>);
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Please input your guess.&#34;</span>);
+
+    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> guess <span style="color:#f92672">=</span> String::new();
+    io::stdin()
+        .read_line(<span style="color:#f92672">&amp;</span><span style="color:#66d9ef">mut</span> guess)
+        .expect(<span style="color:#e6db74">&#34;Failed to read line&#34;</span>);
+
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;You guessed: {}&#34;</span>, guess);
+}
+</code></pre></div><ul>
+<li><code>println!</code> は文字列を出力するマクロ
+<ul>
+<li>マクロは末尾に <code>!</code> がつく</li>
+</ul>
+</li>
+<li><code>let mut</code> は mutable な変数の作成（ <code>let</code> は immutable）</li>
+<li><code>String::new</code> の <code>new</code> は String の associated function
+<ul>
+<li>一部言語で言う static method</li>
+<li><code>new</code> は新しい値を作るときによく使う名前
+<ul>
+<li>コンストラクタとかはないのかな？</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>.read_line()</code> <code>.expect()</code> はメソッド呼び出し</li>
+<li><code>read_line</code> は標準入力を引数の文字列に書き出す</li>
+<li><code>&amp;mut guess</code> の <code>&amp;</code> は参照(reference)渡し
+<ul>
+<li>何もつけないと値渡し</li>
+</ul>
+</li>
+<li><code>&amp;mut guess</code> の <code>mut</code> は参照を mutable にするもの
+<ul>
+<li>何もつけないと immutable</li>
+</ul>
+</li>
+<li><a href="https://doc.rust-lang.org/std/result/enum.Result.html#method.expect"><code>expect</code></a> は <code>Result</code> のメソッド
+<ul>
+<li><code>Result</code> は <code>Ok</code> <code>Err</code> からなる Enum で Rust の標準ライブラリではよく使われる</li>
+<li><code>expect</code> は <code>Ok</code> なら単にその値を返し <code>Err</code> なら引数の文字列を出力してクラッシュする</li>
+<li>このプログラムで <code>expect</code> を呼ばない場合コンパイル時警告になる（エラーハンドリングがないため）</li>
+</ul>
+</li>
+<li><code>println!</code> 内の　<code>{}</code> は変数を埋め込むプレースホルダ（複数可）</li>
+<li>メソッド呼び出しは1つ1つ改行するのが推奨
+<ul>
+<li>エディタでもその形に合わせてフォーマット &amp; メソッドごとに返り値の型を表示してくれる（以下は VSCode + <a href="https://marketplace.visualstudio.com/items?itemName=matklad.rust-analyzer">rust-analyzer</a> の表示）
+<img src="/20201110-rust-guessing-game/return-type-view.png" alt="return type view"></li>
+</ul>
+</li>
+</ul>
+<h3 id="パッケージのインストール">パッケージのインストール</h3>
+<p>乱数生成部分を処理するパッケージをインストールする</p>
+<p><code>cargo.toml</code> に以下を追加</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">[<span style="color:#a6e22e">dependencies</span>]
+<span style="color:#a6e22e">rand</span> = <span style="color:#e6db74">&#34;0.5.5&#34;</span>
+</code></pre></div><p><code>cargo build</code> でパッケージのダウンロードとコンパイルが走る</p>
+<p>バージョン指定の <code>0.5.5</code> は semver 指定で <code>^0.5.5</code> の短縮形（<code>^0.5.5</code> でも可）</p>
+<pre><code>$ cargo build
+   Compiling rand_core v0.3.1
+   Compiling rand_pcg v0.1.2
+   Compiling rand_jitter v0.1.4
+   Compiling rand_os v0.1.3
+   Compiling rand_chacha v0.1.1
+   Compiling rand_hc v0.1.0
+   Compiling rand_xorshift v0.1.1
+   Compiling rand_isaac v0.1.1
+   Compiling rand v0.6.5
+   Compiling guessing_game v0.1.0 (/path/to/guessing_game)
+    Finished dev [unoptimized + debuginfo] target(s) in 2.17s
+</code></pre><p>2回目以降はパッケージがダウンロード済みで、コードにも差分がなければ何も実行されずに終わる</p>
+<pre><code>$ cargo build
+    Finished dev [unoptimized + debuginfo] target(s) in 0.04s
+</code></pre><h3 id="乱数生成部分の追加">乱数生成部分の追加</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">use</span> rand::Rng;
+</span><span style="color:#66d9ef">use</span> std::io;
+
+<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Guess the number!&#34;</span>);
+
+<span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">let</span> secret_number <span style="color:#f92672">=</span> rand::thread_rng().gen_range(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">101</span>);
+</span>
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Please input your guess.&#34;</span>);
+</code></pre></div><ul>
+<li><code>rand::Rng</code> は rand のメソッド使う場合に必要（詳細は chapter 10）</li>
+<li><code>gen_range(a, b)</code> は a &lt;= n &lt; b な整数 n を生成する</li>
+<li>依存している crate のドキュメントは <code>cargo doc --open</code> でドキュメント生成してブラウザで見られる</li>
+</ul>
+<h3 id="入力と答えの比較">入力と答えの比較</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">use</span> rand::Rng;
+<span style="color:#66d9ef">use</span> std::io;
+<span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">use</span> std::cmp::Ordering;
+</span>
+<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Guess the number!&#34;</span>);
+
+    <span style="color:#66d9ef">let</span> secret_number <span style="color:#f92672">=</span> rand::thread_rng().gen_range(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">101</span>);
+
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;The secret number is: {}&#34;</span>, secret_number);
+
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Please input your guess.&#34;</span>);
+
+    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> guess <span style="color:#f92672">=</span> String::new();
+    io::stdin()
+        .read_line(<span style="color:#f92672">&amp;</span><span style="color:#66d9ef">mut</span> guess)
+        .expect(<span style="color:#e6db74">&#34;Failed to read line&#34;</span>);
+
+<span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">let</span> guess: <span style="color:#66d9ef">u32</span> <span style="color:#f92672">=</span> guess.trim().parse().expect(<span style="color:#e6db74">&#34;Please type a number!&#34;</span>);
+</span>
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;You guessed: {}&#34;</span>, guess);
+
+<span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">match</span> guess.cmp(<span style="color:#f92672">&amp;</span>secret_number) {
+</span><span style="display:block;width:100%;background-color:#3c3d38">        Ordering::Less <span style="color:#f92672">=&gt;</span> println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Too small!&#34;</span>),
+</span><span style="display:block;width:100%;background-color:#3c3d38">        Ordering::Greater <span style="color:#f92672">=&gt;</span> println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Too big!&#34;</span>),
+</span><span style="display:block;width:100%;background-color:#3c3d38">        Ordering::Equal <span style="color:#f92672">=&gt;</span> println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;You win!&#34;</span>),
+</span><span style="display:block;width:100%;background-color:#3c3d38">    }
+</span>}
+</code></pre></div><ul>
+<li>String の <code>parse</code> メソッドは数値型へのキャスト(<code>Result</code> を返す)</li>
+<li>guess は変数名がかぶるが前に宣言した変数を上書きできる(Shadowing)</li>
+<li><code>Ordering</code> は <code>Result</code> 同様 Enum で <code>Less</code>, <code>Greater</code>, <code>Equal</code> からなる</li>
+<li><code>cmp</code> メソッドは比較した結果を Ordering で返す</li>
+<li><code>match</code> はパターンマッチ
+<ul>
+<li>パターンごとの処理を書くひとつひとつの行は <code>arm</code> と呼ぶ</li>
+</ul>
+</li>
+</ul>
+<h3 id="ループで複数の入力を受け取る">ループで複数の入力を受け取る</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="display:block;width:100%;background-color:#3c3d38"><span style="color:#66d9ef">loop</span> {
+</span>        <span style="color:#75715e">// 略
+</span><span style="color:#75715e"></span>
+        <span style="color:#66d9ef">match</span> guess.cmp(<span style="color:#f92672">&amp;</span>secret_number) {
+            Ordering::Less <span style="color:#f92672">=&gt;</span> println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Too small!&#34;</span>),
+            Ordering::Greater <span style="color:#f92672">=&gt;</span> println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Too big!&#34;</span>),
+            Ordering::Equal <span style="color:#f92672">=&gt;</span> {
+                println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;You win!&#34;</span>);
+<span style="display:block;width:100%;background-color:#3c3d38">                <span style="color:#66d9ef">break</span>;
+</span>            }
+        }
+    }
+</code></pre></div><ul>
+<li><code>loop</code> は無限ループ</li>
+<li>正解したら <code>break</code> でループを抜ける</li>
+</ul>
+<h3 id="不正な入力のハンドリング">不正な入力のハンドリング</h3>
+<p>数値以外の入力を受け取った際は無視するように変更する</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust">        <span style="color:#66d9ef">let</span> guess: <span style="color:#66d9ef">u32</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">match</span> guess.trim().parse() {
+            Ok(num) <span style="color:#f92672">=&gt;</span> num,
+            Err(_) <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">continue</span>,
+        };
+</code></pre></div><ul>
+<li><code>_</code> は全ての条件が当てはまる</li>
+<li><code>continue</code> で loop の次の iteration に進む
+<ul>
+<li>ここに <code>continue</code> 書けるの妙な感じ</li>
+</ul>
+</li>
+</ul>
+<p>ここまでで完成</p>
+
+
+  
+  <footer>
+    <hr>
+    
+    <div class="post-tags">
+    
+      <i class="fas fa-tags"></i>
+      
+        <a href="/tags/rust">rust</a>
+        &nbsp;
+      
+    
+    </div>
+  </footer>
+  
+
+  
+
+<div class="releated-post">
+  <h3>Related Posts</h3>
+  
+  <i class="fas fa-paperclip"></i>
+  <a href="/blog/20201110-installing-rust/">Rust のインストール</a>
+  <br>
+  
+</div>
+
+
+  <div class="comments">
+
+
+
+</div>
+
+</article>
+
+
+
+  
+  
+  
+</body>
+<div class="foot">
+  
+  
+
+  
+</div>
+
+
+
+</html>
