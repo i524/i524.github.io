@@ -13,7 +13,7 @@
       <pubDate>Wed, 18 Nov 2020 07:09:31 +0900</pubDate>
       
       <guid>https://i524.github.io/blog/20201118-rust-variables/</guid>
-      <description>変数 fn main() { let x = 5; println!(&amp;#34;The value of x is: {}&amp;#34;, x); x = 6; // ^^^^^ cannot assign twice to immutable variable  println!(&amp;#34;The value of x is: {}&amp;#34;, x); }  let で immutable な変数宣言できる  書き換えようとするとコンパイルエラー   let mut で mutable な変数宣言できる  定数 const MAX_POINTS: u32 = 100_000;  const で定数宣言できる  型の明示が必須 名前は upper snake const mut は不可   グローバルスコープ含めどこにでも書ける ランタイムで決定される値は使えない  Shadowing fn main() { let x = 5; let x = x + 1; let x = x * 2; println!</description>
+      <description>資料  Variables and Mutability - The Rust Programming Language  変数 fn main() { let x = 5; println!(&amp;#34;The value of x is: {}&amp;#34;, x); x = 6; // ^^^^^ cannot assign twice to immutable variable  println!(&amp;#34;The value of x is: {}&amp;#34;, x); }  let で immutable な変数宣言できる  書き換えようとするとコンパイルエラー   let mut で mutable な変数宣言できる  定数 const MAX_POINTS: u32 = 100_000;  const で定数宣言できる  型の明示が必須 名前は upper snake const mut は不可   グローバルスコープ含めどこにでも書ける ランタイムで決定される値は使えない  Shadowing fn main() { let x = 5; let x = x + 1; let x = x * 2; println!</description>
     </item>
     
     <item>
