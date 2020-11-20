@@ -6,6 +6,10 @@ tags:
   - rust
 ---
 
+## 資料
+
+- [Variables and Mutability - The Rust Programming Language](https://doc.rust-lang.org/book/ch03-01-variables-and-mutability.html)
+
 ## 変数
 
 ```rust
