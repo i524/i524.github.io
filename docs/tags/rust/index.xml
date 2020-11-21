@@ -6,7 +6,17 @@
     <description>Recent content in rust on 1日1時間</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Wed, 18 Nov 2020 07:09:31 +0900</lastBuildDate><atom:link href="https://i524.github.io/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 22 Nov 2020 07:57:00 +0900</lastBuildDate><atom:link href="https://i524.github.io/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rust のデータ型</title>
+      <link>https://i524.github.io/blog/20201121-rust-data-types/</link>
+      <pubDate>Sun, 22 Nov 2020 07:57:00 +0900</pubDate>
+      
+      <guid>https://i524.github.io/blog/20201121-rust-data-types/</guid>
+      <description>資料  Data Types - The Rust Programming Language  Rust の型 Rust の型は Scalar と Compound に分類される
+Scalar Types  Scalar は単一の値 Integer  signed/unsigned の 8, 16, 32, 64, 128 bit + システム（32bit OS なら 32bit, 64bit OS なら 64bit） signed 8bit なら i8, unsigned 64bit なら u64, システムは isize/usize リテラルの書き方:  数値の末尾に型を明記できる(57u8, -120i32) _ を間に入れて良い(1_000) 16進数(0xff) 8進数(0o77) 2進数(0b1111_0000) バイト（u8のみ）(b&#39;A&#39;)   迷ったら Rust デフォルトの i32 を使おう（64bitOS でも i32 のほうが高速）  isize/usize はコレクションのインデックス等で使う   オーバーフロー時の挙動はコンパイル時のモードで異なる  debug モードではその場で異常終了（panic） release モード（--release オプション）では wrap される:最大値を超えると最小値になる（u8 なら 255 + 1 は 0 になる）  明示的にこの挙動が欲しい場合は標準ライブラリの Wrapping を使おう       Float  f32 f64 がありデフォルトは f64  今のシステムでは計算速度はそれほど変わらず、 f64 のほうが精度高いため     Boolean  bool true/false   Character  char シングルクォートで囲う(&#39;z&#39;)（ダブルクォートは文字列） Rust の Character は4バイトなので emoji 等も表現できる U+0000 ~ U+D7FF, U+E000 ~ U+10FFFF に対応    Compound Types  Compound は複数の値を１つの型で表現するもの Tuple  複数の値をひとつの型としてまとめたもの それぞれ異なる型でも良い 長さを増やしたり減らしたりはできない destructuring ができる（以下） x.</description>
+    </item>
+    
     <item>
       <title>Rust の変数と定数</title>
       <link>https://i524.github.io/blog/20201118-rust-variables/</link>

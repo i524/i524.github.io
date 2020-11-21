@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.78.1" />
+
+  <title> Rust のデータ型 |  1日1時間</title>
+  <link rel="stylesheet" href="https://i524.github.io/css/index.css">
+  <link rel="stylesheet" href="https://i524.github.io/css/classes.css">
+  <link rel="canonical" href="https://i524.github.io/blog/20201121-rust-data-types/">
+  <link rel="alternate" type="application/rss+xml" href="" title="1日1時間">
+  
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <header class="menus">
+  
+  <a href="https://i524.github.io/">1日1時間</a>
+  
+
+  <nav >
+    
+  </nav>
+
+  <nav class="fontawesome">
+    
+    
+  </nav>
+  
+  
+</header>
+
+<article id="article">
+  <header>
+  
+
+    <h1 style="text-align: center;" >Rust のデータ型</h1>
+    <div class="post-meta">
+    
+      <time datetime="2020-11-22T07:57:00&#43;09:00">November 22, 2020</time> &nbsp; 
+    
+
+     &nbsp;
+
+    
+    
+    
+
+    
+    </div>
+  </header>
+
+  <h2 id="資料">資料</h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch03-02-data-types.html">Data Types - The Rust Programming Language</a></li>
+</ul>
+<h2 id="rust-の型">Rust の型</h2>
+<p>Rust の型は <code>Scalar</code> と <code>Compound</code> に分類される</p>
+<h3 id="scalar-types">Scalar Types</h3>
+<ul>
+<li>Scalar は単一の値</li>
+<li>Integer
+<ul>
+<li>signed/unsigned の 8, 16, 32, 64, 128 bit + システム（32bit OS なら 32bit, 64bit OS なら 64bit）</li>
+<li>signed 8bit なら <code>i8</code>, unsigned 64bit なら <code>u64</code>, システムは <code>isize/usize</code></li>
+<li>リテラルの書き方:
+<ul>
+<li>数値の末尾に型を明記できる(<code>57u8</code>, <code>-120i32</code>)</li>
+<li><code>_</code> を間に入れて良い(<code>1_000</code>)</li>
+<li>16進数(<code>0xff</code>)</li>
+<li>8進数(<code>0o77</code>)</li>
+<li>2進数(<code>0b1111_0000</code>)</li>
+<li>バイト（<code>u8</code>のみ）(<code>b'A'</code>)</li>
+</ul>
+</li>
+<li>迷ったら Rust デフォルトの i32 を使おう（64bitOS でも i32 のほうが高速）
+<ul>
+<li><code>isize/usize</code> はコレクションのインデックス等で使う</li>
+</ul>
+</li>
+<li>オーバーフロー時の挙動はコンパイル時のモードで異なる
+<ul>
+<li>debug モードではその場で異常終了（<code>panic</code>）</li>
+<li>release モード（<code>--release</code> オプション）では wrap される:最大値を超えると最小値になる（<code>u8</code> なら <code>255 + 1</code> は <code>0</code> になる）
+<ul>
+<li>明示的にこの挙動が欲しい場合は標準ライブラリの <a href="https://doc.rust-lang.org/std/num/struct.Wrapping.html">Wrapping</a> を使おう</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Float
+<ul>
+<li><code>f32</code> <code>f64</code> がありデフォルトは <code>f64</code>
+<ul>
+<li>今のシステムでは計算速度はそれほど変わらず、 <code>f64</code> のほうが精度高いため</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Boolean
+<ul>
+<li><code>bool</code> <code>true/false</code></li>
+</ul>
+</li>
+<li>Character
+<ul>
+<li><code>char</code></li>
+<li>シングルクォートで囲う(<code>'z'</code>)（ダブルクォートは文字列）</li>
+<li>Rust の Character は4バイトなので emoji 等も表現できる</li>
+<li><code>U+0000</code> ~ <code>U+D7FF</code>, <code>U+E000</code> ~ <code>U+10FFFF</code> に対応</li>
+</ul>
+</li>
+</ul>
+<h3 id="compound-types">Compound Types</h3>
+<ul>
+<li>Compound は複数の値を１つの型で表現するもの</li>
+<li>Tuple
+<ul>
+<li>複数の値をひとつの型としてまとめたもの</li>
+<li>それぞれ異なる型でも良い</li>
+<li>長さを増やしたり減らしたりはできない</li>
+<li>destructuring ができる（以下）</li>
+<li><code>x.0</code> のように <code>.</code> とインデックスで値を参照することも可能</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#66d9ef">let</span> tup: (<span style="color:#66d9ef">i32</span>, <span style="color:#66d9ef">f64</span>, <span style="color:#66d9ef">u8</span>) <span style="color:#f92672">=</span> (<span style="color:#ae81ff">500</span>, <span style="color:#ae81ff">6.4</span>, <span style="color:#ae81ff">1</span>);
+
+<span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">let</span> (x, y, z) <span style="color:#f92672">=</span> tup;
+</span>
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;tup.0 and x has same value?: {}&#34;</span>, tup.<span style="color:#ae81ff">0</span> <span style="color:#f92672">==</span> x); <span style="color:#75715e">// tup.0 and x has same value?: true
+</span><span style="color:#75715e"></span>    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;The value of y is: {}&#34;</span>, y); <span style="color:#75715e">// The value of y is: 6.4
+</span><span style="color:#75715e"></span>}
+</code></pre></div><ul>
+<li>Array
+<ul>
+<li>Array 内の値は全て同じ型</li>
+<li>長さを増やしたり減らしたりはできない</li>
+<li>データを heap より stack に置きたいときに使う（詳細は<a href="https://doc.rust-lang.org/book/ch04-00-understanding-ownership.html">4章</a>）</li>
+<li>固定長以外が必要な場合は標準ライブラリの vector を使おう</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">let</span> a: [<span style="color:#66d9ef">i32</span>; <span style="color:#ae81ff">5</span>] <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>]; <span style="color:#75715e">// 型情報に長さを含む
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">let</span> threes <span style="color:#f92672">=</span> [<span style="color:#ae81ff">3</span>; <span style="color:#ae81ff">5</span>]; <span style="color:#75715e">// [3, 3, 3, 3, 3] と等価
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">let</span> first <span style="color:#f92672">=</span> a[<span style="color:#ae81ff">0</span>];
+
+<span style="color:#66d9ef">let</span> tenth <span style="color:#f92672">=</span> a[<span style="color:#ae81ff">10</span>]; <span style="color:#75715e">// コンパイルエラー
+</span></code></pre></div>
+
+  
+  <footer>
+    <hr>
+    
+    <div class="post-tags">
+    
+      <i class="fas fa-tags"></i>
+      
+        <a href="/tags/rust">rust</a>
+        &nbsp;
+      
+    
+    </div>
+  </footer>
+  
+
+  
+
+<div class="releated-post">
+  <h3>Related Posts</h3>
+  
+  <i class="fas fa-paperclip"></i>
+  <a href="/blog/20201118-rust-variables/">Rust の変数と定数</a>
+  <br>
+  
+  <i class="fas fa-paperclip"></i>
+  <a href="/blog/20201110-rust-guessing-game/">Rust で推測ゲーム(The Book chapter 2)</a>
+  <br>
+  
+  <i class="fas fa-paperclip"></i>
+  <a href="/blog/20201110-installing-rust/">Rust のインストール</a>
+  <br>
+  
+</div>
+
+
+  <div class="comments">
+
+
+
+</div>
+
+</article>
+
+
+
+  
+  
+  
+</body>
+<div class="foot">
+  
+  
+
+  
+</div>
+
+
+
+</html>
