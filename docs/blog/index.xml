@@ -8,7 +8,7 @@
     <language>ja-jp</language>
     <lastBuildDate>Sun, 22 Nov 2020 07:57:00 +0900</lastBuildDate><atom:link href="https://i524.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Rust のデータ型</title>
+      <title>Rust のデータ型(The Book chapter 3.2)</title>
       <link>https://i524.github.io/blog/20201121-rust-data-types/</link>
       <pubDate>Sun, 22 Nov 2020 07:57:00 +0900</pubDate>
       
@@ -18,7 +18,7 @@ Scalar Types  Scalar は単一の値 Integer  signed/unsigned の 8, 16, 32, 64,
     </item>
     
     <item>
-      <title>Rust の変数と定数</title>
+      <title>Rust の変数と定数(The Book chapter 3.1)</title>
       <link>https://i524.github.io/blog/20201118-rust-variables/</link>
       <pubDate>Wed, 18 Nov 2020 07:09:31 +0900</pubDate>
       
@@ -37,7 +37,7 @@ use std::io; fn main() { println!(&amp;#34;Guess the number!&amp;#34;); println!
     </item>
     
     <item>
-      <title>Rust のインストール</title>
+      <title>Rust のインストール(The Book chapter 1)</title>
       <link>https://i524.github.io/blog/20201110-installing-rust/</link>
       <pubDate>Tue, 10 Nov 2020 05:54:36 +0900</pubDate>
       

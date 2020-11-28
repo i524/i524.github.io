@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Rust on 1日1時間</title>
-    <link>https://i524.github.io/tags/rust/</link>
-    <description>Recent content in Rust on 1日1時間</description>
+    <title>Rust The Book on 1日1時間</title>
+    <link>https://i524.github.io/tags/rust-the-book/</link>
+    <description>Recent content in Rust The Book on 1日1時間</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sun, 22 Nov 2020 07:57:00 +0900</lastBuildDate><atom:link href="https://i524.github.io/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 22 Nov 2020 07:57:00 +0900</lastBuildDate><atom:link href="https://i524.github.io/tags/rust-the-book/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Rust のデータ型(The Book chapter 3.2)</title>
       <link>https://i524.github.io/blog/20201121-rust-data-types/</link>
