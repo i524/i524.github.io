@@ -1,9 +1,10 @@
 ---
-title: "Rust のデータ型"
+title: "Rust のデータ型(The Book chapter 3.2)"
 date: 2020-11-22T07:57:00+09:00
 draft: false
 tags:
-  - rust
+  - Rust
+  - Rust The Book
 ---
 
 ## 資料

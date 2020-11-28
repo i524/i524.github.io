@@ -1,9 +1,10 @@
 ---
-title: "Rust の変数と定数"
+title: "Rust の変数と定数(The Book chapter 3.1)"
 date: 2020-11-18T07:09:31+09:00
 draft: false
 tags:
-  - rust
+  - Rust
+  - Rust The Book
 ---
 
 ## 資料

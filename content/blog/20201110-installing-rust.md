@@ -1,9 +1,10 @@
 ---
-title: "Rust のインストール"
+title: "Rust のインストール(The Book chapter 1)"
 date: 2020-11-10T05:54:36+09:00
 draft: false
 tags:
-  - rust
+  - Rust
+  - Rust The Book
 ---
 
 ## 資料

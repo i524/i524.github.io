@@ -3,7 +3,8 @@ title: "Rust で推測ゲーム(The Book chapter 2)"
 date: 2020-11-18T06:57:09+09:00
 draft: false
 tags:
-  - rust
+  - Rust
+  - Rust The Book
 ---
 
 ## 資料
