@@ -6,7 +6,17 @@
     <description>Recent content on 1日1時間</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
-    <lastBuildDate>Sun, 22 Nov 2020 07:57:00 +0900</lastBuildDate><atom:link href="https://i524.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 14 Mar 2021 08:15:05 +0900</lastBuildDate><atom:link href="https://i524.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rust の関数（The Book Chapter 3.3）</title>
+      <link>https://i524.github.io/blog/20210313-rust-functions/</link>
+      <pubDate>Sun, 14 Mar 2021 08:15:05 +0900</pubDate>
+      
+      <guid>https://i524.github.io/blog/20210313-rust-functions/</guid>
+      <description>資料  Functions - The Rust Programming Language  関数の書き方 fn main() { println!(&amp;#34;{}&amp;#34;, add_two_values(4, 5)); another_function(); } fn add_two_values(x: i32, y: i32) -&amp;gt; i32 { x + y } fn another_function() { println!(&amp;#34;another&amp;#34;); }  関数名・変数名はスネークケース 返り値は式だけ書く(セミコロンを書かない) 返り値がない場合省略できる  関数本体  関数本体は複数の文（statement）と末尾の式（expression）からなる（式はなくてもよい）  変数宣言と関数定義は文、それ以外はだいたい式 式の末尾に ; を置くと文になる    ブロックも式:
+let y = { let x = 3; x + 1 }; // -&amp;gt; y == 4 </description>
+    </item>
+    
     <item>
       <title>Rust のデータ型(The Book chapter 3.2)</title>
       <link>https://i524.github.io/blog/20201121-rust-data-types/</link>

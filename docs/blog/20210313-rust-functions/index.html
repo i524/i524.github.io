@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.78.1" />
+
+  <title> Rust の関数（The Book Chapter 3.3） |  1日1時間</title>
+  <link rel="stylesheet" href="https://i524.github.io/css/index.css">
+  <link rel="stylesheet" href="https://i524.github.io/css/classes.css">
+  <link rel="canonical" href="https://i524.github.io/blog/20210313-rust-functions/">
+  <link rel="alternate" type="application/rss+xml" href="" title="1日1時間">
+  
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <header class="menus">
+  
+  <a href="https://i524.github.io/">1日1時間</a>
+  
+
+  <nav >
+    
+  </nav>
+
+  <nav class="fontawesome">
+    
+    
+  </nav>
+  
+  
+</header>
+
+<article id="article">
+  <header>
+  
+
+    <h1 style="text-align: center;" >Rust の関数（The Book Chapter 3.3）</h1>
+    <div class="post-meta">
+    
+      <time datetime="2021-03-14T08:15:05&#43;09:00">March 14, 2021</time> &nbsp; 
+    
+
+     &nbsp;
+
+    
+    
+    
+
+    
+    </div>
+  </header>
+
+  <h2 id="資料">資料</h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch03-03-how-functions-work.html">Functions - The Rust Programming Language</a></li>
+</ul>
+<h2 id="関数の書き方">関数の書き方</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;{}&#34;</span>, add_two_values(<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>));
+    another_function();
+}
+
+<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">add_two_values</span>(x: <span style="color:#66d9ef">i32</span>, y: <span style="color:#66d9ef">i32</span>) -&gt; <span style="color:#66d9ef">i32</span> {
+    x <span style="color:#f92672">+</span> y
+}
+
+<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">another_function</span>() {
+  println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;another&#34;</span>);
+}
+</code></pre></div><ul>
+<li>関数名・変数名はスネークケース</li>
+<li>返り値は式だけ書く(セミコロンを書かない)</li>
+<li>返り値がない場合省略できる</li>
+</ul>
+<h2 id="関数本体">関数本体</h2>
+<ul>
+<li>関数本体は複数の文（statement）と末尾の式（expression）からなる（式はなくてもよい）
+<ul>
+<li>変数宣言と関数定義は文、それ以外はだいたい式</li>
+<li>式の末尾に <code>;</code> を置くと文になる</li>
+</ul>
+</li>
+</ul>
+<p>ブロックも式:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">let</span> y <span style="color:#f92672">=</span> {
+  <span style="color:#66d9ef">let</span> x <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;
+  x <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+}; <span style="color:#75715e">// -&gt; y == 4
+</span></code></pre></div>
+
+  
+  <footer>
+    <hr>
+    
+    <div class="post-tags">
+    
+    </div>
+  </footer>
+  
+
+  
+
+
+  <div class="comments">
+
+
+
+</div>
+
+</article>
+
+
+
+  
+  
+  
+</body>
+<div class="foot">
+  
+  
+
+  
+</div>
+
+
+
+</html>
