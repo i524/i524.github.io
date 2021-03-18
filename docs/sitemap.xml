@@ -4,12 +4,32 @@
   
   <url>
     <loc>https://i524.github.io/</loc>
-    <lastmod>2021-03-14T08:15:05+09:00</lastmod>
+    <lastmod>2021-03-19T06:29:13+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://i524.github.io/blog/20210319-rust-control-flow/</loc>
+    <lastmod>2021-03-19T06:29:13+09:00</lastmod>
   </url>
   
   <url>
     <loc>https://i524.github.io/blog/</loc>
-    <lastmod>2021-03-14T08:15:05+09:00</lastmod>
+    <lastmod>2021-03-19T06:29:13+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://i524.github.io/tags/rust/</loc>
+    <lastmod>2021-03-19T06:29:13+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://i524.github.io/tags/rust-the-book/</loc>
+    <lastmod>2021-03-19T06:29:13+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://i524.github.io/tags/</loc>
+    <lastmod>2021-03-19T06:29:13+09:00</lastmod>
   </url>
   
   <url>
@@ -18,22 +38,7 @@
   </url>
   
   <url>
-    <loc>https://i524.github.io/tags/rust/</loc>
-    <lastmod>2020-11-22T07:57:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://i524.github.io/tags/rust-the-book/</loc>
-    <lastmod>2020-11-22T07:57:00+09:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://i524.github.io/blog/20201121-rust-data-types/</loc>
-    <lastmod>2020-11-22T07:57:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://i524.github.io/tags/</loc>
     <lastmod>2020-11-22T07:57:00+09:00</lastmod>
   </url>
   

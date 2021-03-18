@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja-jp">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.78.1" />
+
+  <title> 20210319 Rust Control Flow |  1日1時間</title>
+  <link rel="stylesheet" href="https://i524.github.io/css/index.css">
+  <link rel="stylesheet" href="https://i524.github.io/css/classes.css">
+  <link rel="canonical" href="https://i524.github.io/blog/20210319-rust-control-flow/">
+  <link rel="alternate" type="application/rss+xml" href="" title="1日1時間">
+  
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <header class="menus">
+  
+  <a href="https://i524.github.io/">1日1時間</a>
+  
+
+  <nav >
+    
+  </nav>
+
+  <nav class="fontawesome">
+    
+    
+  </nav>
+  
+  
+</header>
+
+<article id="article">
+  <header>
+  
+
+    <h1 style="text-align: center;" >20210319 Rust Control Flow</h1>
+    <div class="post-meta">
+    
+      <time datetime="2021-03-19T06:29:13&#43;09:00">March 19, 2021</time> &nbsp; 
+    
+
+     &nbsp;
+
+    
+    
+    
+
+    
+    </div>
+  </header>
+
+  <h2 id="資料">資料</h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/ch03-05-control-flow.html">Control Flow - The Rust Programming Language</a></li>
+</ul>
+<h2 id="概要">概要</h2>
+<ul>
+<li>条件分岐は <code>if</code> 式（と <code>else</code>, <code>else if</code> 式）</li>
+<li>繰り返しは <code>loop</code> 式、 <code>while</code> 式、 <code>for</code> 式がある</li>
+</ul>
+<h2 id="if-式">if 式</h2>
+<p>記法は以下</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">let</span> number <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;
+
+<span style="color:#66d9ef">if</span> number <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">5</span> {
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;more than five&#34;</span>);
+} <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> number <span style="color:#f92672">==</span> <span style="color:#ae81ff">5</span> {
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;five&#34;</span>);
+} <span style="color:#66d9ef">else</span> {
+    println(<span style="color:#e6db74">&#34;less than five&#34;</span>);
+}
+
+<span style="color:#66d9ef">let</span> condition <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+<span style="color:#66d9ef">let</span> number2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">if</span> condition { <span style="color:#ae81ff">5</span> } <span style="color:#66d9ef">else</span> { <span style="color:#ae81ff">6</span> };
+</code></pre></div><ul>
+<li>条件部分( <code>number &lt; 5</code> )は boolean にする必要がある（自動でキャスト等はない）</li>
+<li><code>else</code> で終わる if 式は各条件のブロックの値に評価される
+<ul>
+<li><code>else</code> で終わらない場合 <code>()</code> に評価される</li>
+<li>各ブロックの値の型が揃う必要がある</li>
+</ul>
+</li>
+</ul>
+<h2 id="loop-式">loop 式</h2>
+<ul>
+<li><code>loop</code> は単独では無限ループを実行する</li>
+<li>ループを抜けるための <code>break</code> と一緒に使う</li>
+<li><code>break</code> の後ろに書いた式が loop 式の結果として扱われる</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> counter <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+
+<span style="color:#66d9ef">let</span> result <span style="color:#f92672">=</span> <span style="color:#66d9ef">loop</span> {
+    couner <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+    <span style="color:#66d9ef">if</span> counter <span style="color:#f92672">==</span> <span style="color:#ae81ff">10</span> {
+        <span style="color:#66d9ef">break</span> counter <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>;
+    }
+}; <span style="color:#75715e">// -&gt; 20
+</span></code></pre></div><h2 id="while-式">while 式</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> number <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;
+
+<span style="color:#66d9ef">while</span> number <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> {
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;{}!&#34;</span>, number);
+
+    number <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>;
+}
+
+println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;LIFTOFF!!!&#34;</span>);
+</code></pre></div><h2 id="for-式">for 式</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rust" data-lang="rust"><span style="color:#66d9ef">let</span> a <span style="color:#f92672">=</span> [<span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">40</span>, <span style="color:#ae81ff">50</span>];
+
+<span style="color:#66d9ef">for</span> element <span style="color:#66d9ef">in</span> a.iter() {
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;the value is: {}&#34;</span>, element);
+}
+</code></pre></div><ul>
+<li><code>iter()</code> についてはこの時点では説明がないが <a href="https://doc.rust-lang.org/std/primitive.slice.html#method.iter">slice のメソッド</a>っぽい</li>
+</ul>
+
+
+  
+  <footer>
+    <hr>
+    
+    <div class="post-tags">
+    
+      <i class="fas fa-tags"></i>
+      
+        <a href="/tags/rust">Rust</a>
+        &nbsp;
+      
+        <a href="/tags/rust-the-book">Rust The Book</a>
+        &nbsp;
+      
+    
+    </div>
+  </footer>
+  
+
+  
+
+<div class="releated-post">
+  <h3>Related Posts</h3>
+  
+  <i class="fas fa-paperclip"></i>
+  <a href="/blog/20210313-rust-functions/">Rust の関数（The Book Chapter 3.3）</a>
+  <br>
+  
+  <i class="fas fa-paperclip"></i>
+  <a href="/blog/20201121-rust-data-types/">Rust のデータ型(The Book chapter 3.2)</a>
+  <br>
+  
+  <i class="fas fa-paperclip"></i>
+  <a href="/blog/20201118-rust-variables/">Rust の変数と定数(The Book chapter 3.1)</a>
+  <br>
+  
+  <i class="fas fa-paperclip"></i>
+  <a href="/blog/20201110-rust-guessing-game/">Rust で推測ゲーム(The Book chapter 2)</a>
+  <br>
+  
+  <i class="fas fa-paperclip"></i>
+  <a href="/blog/20201110-installing-rust/">Rust のインストール(The Book chapter 1)</a>
+  <br>
+  
+</div>
+
+
+  <div class="comments">
+
+
+
+</div>
+
+</article>
+
+
+
+  
+  
+  
+</body>
+<div class="foot">
+  
+  
+
+  
+</div>
+
+
+
+</html>

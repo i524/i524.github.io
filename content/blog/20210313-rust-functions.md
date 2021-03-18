@@ -2,6 +2,9 @@
 title: "Rust の関数（The Book Chapter 3.3）"
 date: 2021-03-14T08:15:05+09:00
 draft: false
+tags:
+  - Rust
+  - Rust The Book
 ---
 
 ## 資料
